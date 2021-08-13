@@ -33,7 +33,6 @@ export class FetchApiDataService  {
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   };
@@ -44,7 +43,6 @@ export class FetchApiDataService  {
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        map(this.extractResponseData),
       catchError(this.handleError)
       )
   };
@@ -57,12 +55,11 @@ export class FetchApiDataService  {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   };
 
-  getUser(): Observable<any> {
+ /*  getUser(): Observable<any> {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     return this.http
@@ -73,7 +70,7 @@ export class FetchApiDataService  {
       })
       .pipe(map(this.extractResponseData),
       catchError(this.handleError));
-  };
+  }; */
 
   addFavorite(id: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -84,7 +81,6 @@ export class FetchApiDataService  {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   };
@@ -98,7 +94,6 @@ export class FetchApiDataService  {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   };
@@ -112,7 +107,6 @@ export class FetchApiDataService  {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   };
@@ -126,7 +120,6 @@ export class FetchApiDataService  {
           Authorization: 'Bearer ' + token,
         })
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
