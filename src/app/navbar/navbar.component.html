@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <button class="nav-logo">
+    <span (click)="logoClick()" >MyFlix</span>
+  </button>
+    <div>
+    <button mat-icon-button color="accent" class="example-icon favorite-icon" (click)="onProfileClick()" aria-label="Example icon-button with heart icon">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" class="logout-btn" (click)="logOut()" aria-label="Log out button">
+      <mat-icon>logout</mat-icon>
+  </button>
+</div>
+</mat-toolbar>

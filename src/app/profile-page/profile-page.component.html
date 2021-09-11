@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="profile-page">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="userInfo.Name">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="userInfo.Username">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="userInfo.Email">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userInfo.Password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Birthday</mat-label>
+        <input matInput placeholder="Placeholder" type="date" [(ngModel)]="userInfo.Birthday">
+    </mat-form-field>
+    <div class="profile-btn-container">
+    <button
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+    (click)="saveChanges()"
+  >
+    Edit Profile
+  </button>
+
+  <button
+    mat-raised-button
+    color="warn"
+    style="margin-right: 10px;"
+    (click)="openDeleteDialog()"
+  >
+    Delete Profile
+  </button>
+</div>
+</div>
+

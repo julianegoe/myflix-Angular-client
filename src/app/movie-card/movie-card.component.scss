@@ -1,0 +1,24 @@
+.movie-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin: 5%;
+
+  mat-card {
+    aspect-ratio: 4 / 6;
+    object-fit: contain;
+
+    .card-img {
+      aspect-ratio: 4 / 6;
+      cursor: pointer;
+    }
+    mat-card-actions {
+      display: flex;
+      justify-content: center;
+
+      .info-btn {
+        margin-right: 10px;
+      }
+    }
+  }
+}

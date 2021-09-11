@@ -1,0 +1,13 @@
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .nav-logo {
+    border: none;
+    background-color: none;
+    font-size: 1.5rem;
+    color: #ff4081;
+    cursor: pointer;
+  }
+}

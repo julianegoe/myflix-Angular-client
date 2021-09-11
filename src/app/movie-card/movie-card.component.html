@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<div class="movie-page" >
+    <mat-card *ngFor="let movie of movies; let i=index;">
+        <mat-card-title>{{movie.Title}}
+        </mat-card-title>
+        <mat-card-subtitle>Directed by: {{movie.Director.Name}}, {{movie.Year}}, {{movie.Genre.Name}}</mat-card-subtitle>
+        <img (click)="openSynopsisDialog(movie.Description)"  mat-card-image class="card-img"  src={{movie.ImageUrl}}/>
+        <mat-card-actions>
+            <button mat-icon-button color="accent" aria-label="icon of a star" (click)="toggleFav(movie._id)">
+                <mat-icon>{{isFav(movie._id) ? 'star' : 'star_border'}}</mat-icon>
+            </button>
+                <a (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)" class="info-btn" mat-flat-button color="accent" aria-label="icon of a star">
+                Genre Info
+                </a>
+
+                <a (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birth)"  class="info-btn" mat-flat-button color="accent" aria-label="icon of a star">
+                    Director Info
+                </a>
+        </mat-card-actions>
+    </mat-card>
+</div>
