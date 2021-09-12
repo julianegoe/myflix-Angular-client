@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
 import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
@@ -16,7 +17,8 @@ export class MovieCardComponent {
   favs: string[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -61,20 +63,27 @@ export class MovieCardComponent {
   }
 
   isFav(id: string): Boolean {
-    return this.favs.includes(id) ? this.faved = true : this.faved = false
+    return this.favs.includes(id) ? true : false
   }
 
   toggleFav(id: string): void {
-    console.log(id);
-    if (this.faved) {
+    if (this.isFav(id)) {
+      console.log("trying to remove...")
       this.fetchApiData.removeFavorite(id).subscribe((resp: any) => {
-        console.log(resp);
-        this.getFavs()
+        this.snackbar.open('Removed from favorites!', 'OK', {
+          duration: 2000,
+        });
+        return this.favs.splice(this.favs.indexOf(id), 1)
       })
-    } else {
+    } else if (!this.isFav(id)) {
+      console.log("trying to add...")
+
       this.fetchApiData.addFavorite(id).subscribe((resp: any) => {
-        console.log(resp);
-        this.getFavs()
+        console.log(id);
+        this.snackbar.open('Added to favorites!', 'OK', {
+          duration: 2000,
+        });
+        return this.favs.push(id);
       })
     }
   }

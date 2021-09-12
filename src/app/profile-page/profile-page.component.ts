@@ -14,6 +14,8 @@ import { User } from '../types/User'
 })
 export class ProfilePageComponent implements OnInit {
   hide = true;
+  favIds: string[] = [];
+  favList: any[] = []
 
   @Input() userInfo = { 
     Name: '',
@@ -29,7 +31,8 @@ export class ProfilePageComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.getUserData()
+    this.getUserData();
+    this.getFavorites()
   }
 
   formatBirthday(birthday: string): string {
@@ -38,7 +41,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getUserData(): void {
-    this.fetchApiData.getUser().subscribe((resp: User) => {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
         this.userInfo = {
           Name: resp.Name,
           Username: resp.Username,
@@ -46,7 +49,7 @@ export class ProfilePageComponent implements OnInit {
           Password: '',
           Birthday: this.formatBirthday(resp.Birthday)
         }
-        console.log(this.userInfo);
+        this.favIds = resp.FavoriteMovies;
         return this.userInfo;
       });
     }
@@ -72,5 +75,16 @@ export class ProfilePageComponent implements OnInit {
         return this.userInfo
       })
     }
+
+    getFavorites(): void {
+      this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+        const movies = resp;
+        movies.forEach((movie: any) => {
+          this.favIds.includes(movie._id) ? this.favList.push(movie) : null
+      });
+      })
+
+    }
+
 
 }

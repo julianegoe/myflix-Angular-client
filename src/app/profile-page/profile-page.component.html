@@ -49,5 +49,15 @@
     Delete Profile
   </button>
 </div>
+<hr>
+<h1>Favorite Movies</h1>
+<div class="favorites-list" >
+  <mat-card xFlex="20%" *ngFor="let movie of favList; let i=index;">
+    <mat-card-title>{{movie.Title}}
+    </mat-card-title>
+    <mat-card-subtitle>Directed by: {{movie.Director.Name}}, {{movie.Year}}, {{movie.Genre.Name}}</mat-card-subtitle>
+    <img mat-card-image class="card-img"  src={{movie.ImageUrl}}/>
+  </mat-card>
+</div>
 </div>
 

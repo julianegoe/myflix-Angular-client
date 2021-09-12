@@ -5,4 +5,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  mat-card {
+    aspect-ratio: 4 / 6;
+    object-fit: contain;
+
+    .card-img {
+      aspect-ratio: 4 / 6;
+    }
+  }
+
+  .favorites-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 10px;
+  }
 }
