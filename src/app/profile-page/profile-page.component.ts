@@ -35,11 +35,20 @@ export class ProfilePageComponent implements OnInit {
     this.getFavorites()
   }
 
+  /**
+   * formats birthday data so it can be processed by date form
+   * @param birthday date string
+   * @returns formatted date string
+   */
   formatBirthday(birthday: string): string {
     this.userInfo.Birthday = new Date(birthday).toISOString().split('T')[0]
     return this.userInfo.Birthday 
   }
 
+  /**
+   * fetches user data from API
+   * @returns object of user data
+   */
   getUserData(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
         this.userInfo = {
@@ -54,12 +63,19 @@ export class ProfilePageComponent implements OnInit {
       });
     }
 
+    /**
+   * opens modal to delete user account
+   */
     openDeleteDialog(): void {
       this.dialog.open(DeleteModalComponent, {
         width: '280px'
       })
     }
 
+/**
+   * sends updated user data to API
+   * @returns object of updated user data
+   */
     saveChanges(): void {
       this.fetchApiData.EditUserInfo(this.userInfo).subscribe((resp: User) => {
         this.userInfo = {
@@ -76,6 +92,10 @@ export class ProfilePageComponent implements OnInit {
       })
     }
 
+   /**
+   * turns movie ids from favorite list into array of movie objetcs
+   * @returns function that pushes movies to favorite list
+   */
     getFavorites(): void {
       this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         const movies = resp;
@@ -83,7 +103,6 @@ export class ProfilePageComponent implements OnInit {
           this.favIds.includes(movie._id) ? this.favList.push(movie) : null
       });
       })
-
     }
 
 

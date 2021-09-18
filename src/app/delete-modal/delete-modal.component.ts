@@ -21,6 +21,9 @@ export class DeleteModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * removies logged in user from user database and routes to welcome page
+   */
   deleteProfile(): void {
     this.fetchApiData.deleteUser().subscribe((resp) => {
       this.snackBar.open(resp, 'OK', {

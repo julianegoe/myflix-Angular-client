@@ -16,10 +16,16 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * routes to profile page
+   */
   onProfileClick(): void {
     this.router.navigate(['profile']);
   }
 
+  /**
+   * logs user out and routes to welcome page
+   */
   logOut(): void {
     localStorage.clear()
     this.snackbar.open("Successfully logged out.", 'OK', {
@@ -28,6 +34,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['welcome'])
   }
 
+  /**
+   * routes to movies page
+   */
   logoClick(): void {
     this.router.navigate(['movies'])
   }
